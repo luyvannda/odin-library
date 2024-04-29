@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { FC, Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -8,16 +8,23 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavBar() {
+interface NavBarProps {
+  setIsOpenNav: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const NavBar: FC<NavBarProps> = ({ setIsOpenNav }) => {
   return (
     <Disclosure as="nav" className="bg-amber-400">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
+            <div className="relative flex h-12 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button
+                  onClick={() => setIsOpenNav((prevIsOpen) => !prevIsOpen)}
+                  className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-green-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                >
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -69,7 +76,7 @@ export default function NavBar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=3298&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt=""
                       />
                     </Menu.Button>
@@ -129,29 +136,10 @@ export default function NavBar() {
               </div>
             </div>
           </div>
-
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium",
-                  )}
-                  aria-current={item.current ? "page" : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
-            </div>
-          </Disclosure.Panel>
         </>
       )}
     </Disclosure>
   );
-}
+};
+
+export default NavBar;
