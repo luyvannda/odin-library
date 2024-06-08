@@ -2,10 +2,10 @@ import { FC } from "react";
 import { Book } from "../constant/types";
 
 interface LibraryProps {
-  library: Book[];
+  book: Book[];
 }
 
-const Library: FC<LibraryProps> = ({ library }) => {
+const Form: FC<LibraryProps> = ({ book }) => {
   return (
     <table>
       <thead>
@@ -17,12 +17,12 @@ const Library: FC<LibraryProps> = ({ library }) => {
         </tr>
       </thead>
       <tbody>
-        {library.map((book) => (
-          <tr key={book.id}>
-            <td>{book.title}</td>
-            <td>{book.author}</td>
-            <td>{book.pages}</td>
-            <td>{book.readStatus ? "Read" : "Not Read"}</td>
+        {book.map((item) => (
+          <tr key={item.id}>
+            <td>{item.title}</td>
+            <td>{item.author}</td>
+            <td>{item.pages}</td>
+            <td>{item.readStatus ? "Read" : "Not Read"}</td>
           </tr>
         ))}
       </tbody>
@@ -30,4 +30,4 @@ const Library: FC<LibraryProps> = ({ library }) => {
   );
 };
 
-export default Library;
+export default Form;

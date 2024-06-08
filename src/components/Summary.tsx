@@ -1,6 +1,6 @@
 const Summary = () => {
   return (
-    <div className="absolute flex min-h-[100vh] w-[70vw] flex-col items-center justify-center bg-slate-200 opacity-90">
+    <div className="absolute flex min-h-[100vh] w-[70vw] flex-col items-center justify-center bg-slate-200 opacity-90 lg:static lg:min-h-[50vh] lg:w-[50vw]">
       <div className="h-[1px] w-[55vw] bg-gray-600"></div>
       <h2 className="p-2 text-lg font-semibold text-gray-600">Information</h2>
       <div className="h-[0.5px] w-[55vw] bg-gray-600"></div>
