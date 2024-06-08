@@ -20,16 +20,23 @@ const App: FC = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen overflow-x-hidden bg-slate-100">
       <NavBar setIsOpenNav={setIsOpenNav} />
 
       <div className="lg:hidden">{isOpenNav && <Summary />}</div>
 
-      <div className="grid grid-cols-2">
-        {addIsClicked && <Form book={book} onSubmit={addBook} />}
-        <div className="bg-slate-100 px-4 py-3">
-          <button onClick={toggleForm} className="bg-green-400 px-4 py-3">
-            Add Book
+      <div className="grid lg:grid-cols-2">
+        {addIsClicked && (
+          <div className="absolute">
+            <Form book={book} onSubmit={addBook} />
+          </div>
+        )}
+        <div className="flex items-center justify-center py-40 ">
+          <button
+            onClick={toggleForm}
+            className="h-[8rem] w-[6rem] rounded-lg bg-green-300 text-[5rem] text-white"
+          >
+            +
           </button>
         </div>
         <div className="hidden lg:block">
