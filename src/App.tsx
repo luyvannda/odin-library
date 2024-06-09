@@ -1,5 +1,6 @@
 import "./App.css";
 import Form from "./components/Form";
+import Library from "./components/Library";
 import NavBar from "./components/NavBar";
 import Summary from "./components/Summary";
 import { Book } from "./constant/types";
@@ -15,12 +16,15 @@ const App: FC = () => {
     setAddIsClicked((prevState) => !prevState);
   };
 
-  const addBook = (newBook: Book) => {
+  const addBook = (newBook: Book, e: { preventdefault: () => void }) => {
+    e.preventdefault();
     setBook((prevBook) => [...prevBook, newBook]);
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-slate-100">
+    <div
+      className={`min-h-screen overflow-x-hidden bg-slate-100 ${addIsClicked ? "opacity-25" : ""}`}
+    >
       <NavBar setIsOpenNav={setIsOpenNav} />
 
       <div className="lg:hidden">{isOpenNav && <Summary />}</div>
@@ -28,7 +32,7 @@ const App: FC = () => {
       <div className="grid lg:grid-cols-2">
         {addIsClicked && (
           <div className="absolute">
-            <Form book={book} onSubmit={addBook} />
+            <Form onSubmit={addBook} />
           </div>
         )}
         <div className="group flex items-center justify-center py-40 ">
@@ -43,6 +47,7 @@ const App: FC = () => {
           <Summary />
         </div>
       </div>
+      <Library book={book} />
     </div>
   );
 };

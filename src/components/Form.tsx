@@ -1,32 +1,20 @@
 import { FC } from "react";
-import { Book } from "../constant/types";
 
-interface LibraryProps {
-  book: Book[];
+interface FormProps {
+  onSubmit: () => void;
 }
 
-const Form: FC<LibraryProps> = ({ book }) => {
+const Form: FC<FormProps> = ({ onSubmit }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Pages</th>
-          <th>Read</th>
-        </tr>
-      </thead>
-      <tbody>
-        {book.map((item) => (
-          <tr key={item.id}>
-            <td>{item.title}</td>
-            <td>{item.author}</td>
-            <td>{item.pages}</td>
-            <td>{item.readStatus ? "Read" : "Not Read"}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div>
+      <h2>Add New Book</h2>
+      <form onSubmit={onSubmit}>
+        <input type="text" placeholder="Title" />
+        <input type="text" placeholder="Author" />
+        <input type="text" placeholder="Total pages" />
+        <input type="text" placeholder="Completed pages" />
+      </form>
+    </div>
   );
 };
 

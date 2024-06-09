@@ -4,9 +4,18 @@ export default {
   theme: {
     extend: {
       animation: {
+        appear: "appear 1.5s ease-in-out",
         spinClockwise: "spinClockwise 1.5s ease-in-out",
       },
       keyframes: {
+        appear: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        },
         spinClockwise: {
           "0%": {
             transform: "rotate(0)",
