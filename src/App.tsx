@@ -31,12 +31,12 @@ const App: FC = () => {
             <Form book={book} onSubmit={addBook} />
           </div>
         )}
-        <div className="flex items-center justify-center py-40 ">
+        <div className="group flex items-center justify-center py-40 ">
           <button
             onClick={toggleForm}
-            className="h-[8rem] w-[6rem] rounded-lg bg-green-300 text-[5rem] text-white"
+            className="h-[8rem] w-[6rem] transform rounded-lg bg-green-300 text-[5rem] text-white transition-transform duration-1000 group-hover:scale-150"
           >
-            +
+            <div className="group-hover:animate-spinClockwise">+</div>
           </button>
         </div>
         <div className="hidden lg:block">
